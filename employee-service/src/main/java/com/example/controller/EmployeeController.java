@@ -1,6 +1,7 @@
 package com.example.controller;
 
 import com.example.model.Employee;
+import com.example.repository.EmployeeMicronautRepository;
 import com.example.repository.EmployeeRepository;
 import io.micronaut.http.annotation.Body;
 import io.micronaut.http.annotation.Controller;
@@ -22,10 +23,13 @@ public class EmployeeController {
     @Inject
     EmployeeRepository repository;
 
+    @Inject
+    EmployeeMicronautRepository micronautRepository;
+
     @Post
-    public Employee add(@Body Employee newEmployee){
-        LOGGER.info("Employee add: {}", newEmployee);
-        return repository.add(newEmployee);
+    public Employee save(@Body Employee newEmployee){
+        LOGGER.info("Employee save: {}", newEmployee);
+        return micronautRepository.save(newEmployee);
     }
 
     @Get("/{id}")
