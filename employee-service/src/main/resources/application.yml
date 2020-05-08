@@ -17,3 +17,22 @@ tracing:
     enabled: true
     sampler:
       probability: 1
+
+dataSources:
+  default:
+    url: 'jdbc:postgresql://localhost:5432/postgres'
+    username: 'postgres'
+    password: ''
+    driver-class-name: org.postgresql.Driver
+
+flyway:
+  datasources:
+      default:
+         locations: classpath:databasemigrations
+         baselineOnMigrate: true
+         baselineVersion: 1
+
+endpoints:
+  flyway:
+    enabled: true
+    sensitive: false
